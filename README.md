@@ -1,10 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Quiet Hours Scheduler
 
-## Getting Started
+A Next.js project for managing quiet hours, built with Supabase Auth, MongoDB, and scheduled cron notifications. Users can define quiet hour blocks with automatic overlap prevention, while cron jobs trigger email reminders. Security is enforced using Row-Level Security for reliable and secure operations.
 
-First, run the development server:
+Features
 
-```bash
+User Authentication: Powered by Supabase Auth.
+
+Quiet Hour Management: Create, update, and delete quiet hour blocks.
+
+Overlap Prevention: Prevents scheduling conflicts automatically.
+
+Email Reminders: Cron jobs send timely notifications to users.
+
+Secure Data Access: Row-Level Security ensures users can only access their own data.
+
+Optimized Font Loading: Uses Geist font with next/font for faster performance.
+
+Getting Started
+Prerequisites
+
+Node.js (v18+ recommended)
+
+npm / yarn / pnpm / bun
+
+Supabase project credentials
+
+MongoDB connection URL
+
+Installation
+
+Clone the repository:
+
+git clone https://github.com/prakhaaar/quiethours
+cd quiet-hours
+
+
+Install dependencies:
+
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+
+Run Development Server
 npm run dev
 # or
 yarn dev
@@ -12,25 +53,64 @@ yarn dev
 pnpm dev
 # or
 bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open http://localhost:3000
+ in your browser.
+Start editing the page by modifying app/page.tsx; changes auto-refresh.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Environment Variables
 
-## Learn More
+Create a .env.local file in the root and set the following:
 
-To learn more about Next.js, take a look at the following resources:
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+MONGODB_URI=your_mongodb_connection_uri
+CRON_SECRET=your_cron_secret_key
+RESEND_API_KEY=your_resend_email_api_key
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Learn More
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Next.js Documentation
+ - comprehensive Next.js guides and API references.
 
-## Deploy on Vercel
+Learn Next.js
+ - interactive tutorials to get started.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Supabase Docs
+ - authentication, database, and RLS setup.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MongoDB Docs
+ - database queries and indexing.
+
+Next.js Deployment
+ - deploying to Vercel.
+
+Deployment
+
+The easiest way to deploy is on Vercel:
+
+Connect your GitHub repository to Vercel.
+
+Set environment variables in Vercel dashboard.
+
+Click Deploy.
+
+Your app will be live in minutes.
+
+Project Structure
+/app             # Next.js App Router pages
+/components      # Reusable React components
+/lib             # Supabase and MongoDB helpers
+/functions       # Supabase serverless functions (cron jobs, notifications)
+/styles          # CSS / Tailwind styling
+
+Contributing
+
+Contributions, issues, and feature requests are welcome!
+Feel free to submit a PR or open an issue for improvements.
+
+License
+
+This project is licensed under the MIT License.
