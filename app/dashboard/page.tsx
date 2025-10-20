@@ -220,7 +220,7 @@ export default function Dashboard() {
           </p>
 
           <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            We'll remind you{" "}
+            We&apos;ll remind you{" "}
             <span className="font-semibold text-orange-600">
               10 minutes before
             </span>{" "}
