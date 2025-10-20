@@ -1,3 +1,5 @@
+![logo]](/public/logo.png)
+
 # Quiet Hours Scheduler 🛎️🌙
 
 A beautiful Next.js app for managing quiet hours — built with Supabase Auth, MongoDB, and scheduled cron notifications. Define quiet-hour blocks with automatic overlap prevention and get timely email reminders. Secure access is enforced with Row-Level Security (RLS).
