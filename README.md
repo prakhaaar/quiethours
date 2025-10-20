@@ -1,4 +1,4 @@
-![logo]](/public/logo.png)
+![logo](/public/logo.png)
 
 # Quiet Hours Scheduler 🛎️🌙
 
