@@ -1,42 +1,67 @@
-Quiet Hours Scheduler
+# Quiet Hours Scheduler 🛎️🌙
 
-A Next.js project for managing quiet hours, built with Supabase Auth, MongoDB, and scheduled cron notifications. Users can define quiet hour blocks with automatic overlap prevention, while cron jobs trigger email reminders. Security is enforced using Row-Level Security for reliable and secure operations.
+A beautiful Next.js app for managing quiet hours — built with Supabase Auth, MongoDB, and scheduled cron notifications. Define quiet-hour blocks with automatic overlap prevention and get timely email reminders. Secure access is enforced with Row-Level Security (RLS).
 
-Features
+---
 
-User Authentication: Powered by Supabase Auth.
+## ✨ Highlights
 
-Quiet Hour Management: Create, update, and delete quiet hour blocks.
+- 🔐 User Authentication — Supabase Auth
+- 🕒 Quiet Hour Management — create, update, delete blocks
+- 🚫 Overlap Prevention — automatic conflict handling
+- ✉️ Email Reminders — cron-triggered notifications
+- 🛡️ Secure Data Access — Row-Level Security (RLS)
+- ⚡ Optimized Fonts — Geist with next/font for faster loading
 
-Overlap Prevention: Prevents scheduling conflicts automatically.
+---
 
-Email Reminders: Cron jobs send timely notifications to users.
+## 🧭 Getting Started
 
-Secure Data Access: Row-Level Security ensures users can only access their own data.
+Place three screenshot files in the Next.js public folder (project-root/public) named exactly:
 
-Optimized Font Loading: Uses Geist font with next/font for faster performance.
+- welcomepage.png
+- authpage.png
+- dashboardmail.png
 
-Getting Started
-Prerequisites
+Then include them in the README:
 
-Node.js (v18+ recommended)
+### Screenshots
 
-npm / yarn / pnpm / bun
+![Welcome Page](/public/welcomepage.png)  
+_Welcome screen and onboarding._
 
-Supabase project credentials
+![Auth Page](/public/authpage.png)  
+_Sign-in / sign-up flow powered by Supabase._
 
-MongoDB connection URL
+[Dashboard Email](/public/dashboard.png)  
+_Dashboard view / ._
 
-Installation
+[mail](/public//mail.png)
+Notes:
+
+- Files in `/public` are served from the site root (e.g., /welcomepage.png).
+- If you use different extensions (jpg, webp), update the filenames in the markdown accordingly.
+- Resize images to ~320px width for a compact layout, or keep original resolution for full-size previews.
+
+### Prerequisites
+
+- Node.js v18+
+- npm / yarn / pnpm / bun
+- Supabase project credentials
+- MongoDB connection URL
+
+### Install
 
 Clone the repository:
 
+```bash
 git clone https://github.com/prakhaaar/quiethours
 cd quiet-hours
-
+```
 
 Install dependencies:
 
+```bash
 npm install
 # or
 yarn install
@@ -44,8 +69,11 @@ yarn install
 pnpm install
 # or
 bun install
+```
 
-Run Development Server
+Run the dev server:
+
+```bash
 npm run dev
 # or
 yarn dev
@@ -53,64 +81,68 @@ yarn dev
 pnpm dev
 # or
 bun dev
+```
 
+Open http://localhost:3000 and start editing `app/page.tsx` — changes auto-refresh 🔁
 
-Open http://localhost:3000
- in your browser.
-Start editing the page by modifying app/page.tsx; changes auto-refresh.
+---
 
-Environment Variables
+## ⚙️ Environment Variables
 
-Create a .env.local file in the root and set the following:
+Create a `.env.local` in the project root and add:
 
+```env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
-MONGODB_URI=your_mongodb_connection_uri
-CRON_SECRET=your_cron_secret_key
+DATABASE_URL=your_supabase_database_url
+
 RESEND_API_KEY=your_resend_email_api_key
+```
 
-Learn More
+---
 
-Next.js Documentation
- - comprehensive Next.js guides and API references.
+## 📚 Learn More
 
-Learn Next.js
- - interactive tutorials to get started.
+- Next.js Documentation — comprehensive guides and API refs
+- Learn Next.js — interactive tutorials
+- Supabase Docs — auth, database, and RLS setup
+- MongoDB Docs — queries and indexing
+- Next.js Deployment — deploy to Vercel
 
-Supabase Docs
- - authentication, database, and RLS setup.
+(Links can be added in your README to the official docs for each.)
 
-MongoDB Docs
- - database queries and indexing.
+---
 
-Next.js Deployment
- - deploying to Vercel.
+## 🚀 Deployment (Vercel)
 
-Deployment
+1. Connect your GitHub repo to Vercel
+2. Set the environment variables in the Vercel dashboard
+3. Click Deploy — your app will be live in minutes ✨
 
-The easiest way to deploy is on Vercel:
+---
 
-Connect your GitHub repository to Vercel.
+## 📁 Project Structure
 
-Set environment variables in Vercel dashboard.
-
-Click Deploy.
-
-Your app will be live in minutes.
-
-Project Structure
+```
 /app             # Next.js App Router pages
 /components      # Reusable React components
 /lib             # Supabase and MongoDB helpers
-/functions       # Supabase serverless functions (cron jobs, notifications)
-/styles          # CSS / Tailwind styling
+/functions       # Serverless functions (cron jobs, notifications)
+styles           # CSS / Tailwind styling
+```
 
-Contributing
+---
 
-Contributions, issues, and feature requests are welcome!
-Feel free to submit a PR or open an issue for improvements.
+## 🤝 Contributing
 
-License
+Contributions, issues, and feature requests are welcome!  
+Feel free to open a PR or an issue — help improve the app 💖
+
+---
+
+## 🧾 License
 
 This project is licensed under the MIT License.
+
+Happy coding! 🚀
