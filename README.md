@@ -17,13 +17,6 @@ A beautiful Next.js app for managing quiet hours — built with Supabase Auth, M
 
 ## 🧭 Getting Started
 
-Place three screenshot files in the Next.js public folder (project-root/public) named exactly:
-
-- welcomepage.png
-- authpage.png
-- dashboardmail.png
-
-Then include them in the README:
 
 ### Screenshots
 
@@ -36,19 +29,13 @@ _Sign-in / sign-up flow powered by Supabase._
 [Dashboard Email](/public/dashboard.png)  
 _Dashboard view / ._
 
-[mail](/public//mail.png)
-Notes:
-
-- Files in `/public` are served from the site root (e.g., /welcomepage.png).
-- If you use different extensions (jpg, webp), update the filenames in the markdown accordingly.
-- Resize images to ~320px width for a compact layout, or keep original resolution for full-size previews.
+[mail](/public/mail.png)
 
 ### Prerequisites
 
 - Node.js v18+
 - npm / yarn / pnpm / bun
 - Supabase project credentials
-- MongoDB connection URL
 
 ### Install
 
