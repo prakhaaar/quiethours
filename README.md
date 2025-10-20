@@ -17,7 +17,6 @@ A beautiful Next.js app for managing quiet hours — built with Supabase Auth, M
 
 ## 🧭 Getting Started
 
-
 ### Screenshots
 
 ![Welcome Page](/public/welcomepage.png)  
