@@ -89,6 +89,13 @@ export default function Dashboard() {
 
     const formattedStart = new Date(startTime).toISOString();
     const formattedEnd = new Date(endTime).toISOString();
+    const formattedStart = new Date(startTime).toISOString();
+    const formattedEnd = new Date(endTime).toISOString();
+
+    if (new Date(formattedStart) > new Date(formattedEnd)) {
+      [formattedStart, formattedEnd] = [formattedEnd, formattedStart];
+    }
+
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
     try {
