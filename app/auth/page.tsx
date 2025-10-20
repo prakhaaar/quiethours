@@ -124,6 +124,7 @@ export default function Authpage() {
             </button>
           </form>
 
+          {/* Remember Me & Forgot Password (only for login) */}
           {!isSignup && (
             <div className="flex items-center justify-between text-sm text-gray-600">
               <label className="flex items-center space-x-2">
@@ -135,8 +136,34 @@ export default function Authpage() {
               </button>
             </div>
           )}
+
+          {/* ✅ Mobile toggle for Sign In / Sign Up */}
+          <div className="mt-6 text-center md:hidden text-sm text-gray-600">
+            {isSignup ? (
+              <p>
+                Already have an account?{" "}
+                <button
+                  onClick={() => setIsSignup(false)}
+                  className="text-orange-500 font-semibold hover:underline"
+                >
+                  Sign In
+                </button>
+              </p>
+            ) : (
+              <p>
+                Don’t have an account?{" "}
+                <button
+                  onClick={() => setIsSignup(true)}
+                  className="text-orange-500 font-semibold hover:underline"
+                >
+                  Sign Up
+                </button>
+              </p>
+            )}
+          </div>
         </div>
 
+        {/* Right Side: Orange Section (hidden on mobile) */}
         <div className="hidden md:flex w-1/2 bg-orange-500 text-white flex-col items-center justify-center p-8 text-center transition-all">
           {isSignup ? (
             <>
