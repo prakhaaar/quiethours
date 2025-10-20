@@ -2,20 +2,16 @@
 
 # Quiet Hours Scheduler 🛎️🌙
 
-A beautiful Next.js app for managing quiet hours — built with Supabase Auth, MongoDB, and scheduled cron notifications. Define quiet-hour blocks with automatic overlap prevention and get timely email reminders. Secure access is enforced with Row-Level Security (RLS).
-
----
+A beautiful Next.js app for managing quiet hours built with Supabase Auth, MongoDB, and scheduled cron notifications. Define quiet-hour blocks with automatic overlap prevention and get timely email reminders. Secure access is enforced with Row-Level Security (RLS).
 
 ## ✨ Highlights
 
-- 🔐 User Authentication — Supabase Auth
-- 🕒 Quiet Hour Management — create, update, delete blocks
-- 🚫 Overlap Prevention — automatic conflict handling
-- ✉️ Email Reminders — cron-triggered notifications
-- 🛡️ Secure Data Access — Row-Level Security (RLS)
-- ⚡ Optimized Fonts — Geist with next/font for faster loading
-
----
+- 🔐 User Authentication :— Supabase Auth
+- 🕒 Quiet Hour Management :— create, update, delete blocks
+- 🚫 Overlap Prevention :— automatic conflict handling
+- ✉️ Email Reminders :— cron-triggered notifications
+- 🛡️ Secure Data Access :— Row-Level Security (RLS)
+- ⚡ Optimized Fonts :— Geist with next/font for faster loading
 
 ## 🧭 Getting Started
 
@@ -41,11 +37,11 @@ _Dashboard view / ._
 ### Install
 
 Clone the repository:
-
-```bash
+bash
 git clone https://github.com/prakhaaar/quiethours
 cd quiet-hours
-```
+
+````
 
 Install dependencies:
 
@@ -57,7 +53,7 @@ yarn install
 pnpm install
 # or
 bun install
-```
+````
 
 Run the dev server:
 
@@ -83,8 +79,6 @@ Create a `.env.local` in the project root and add:
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
-DATABASE_URL=your_supabase_database_url
-
 RESEND_API_KEY=your_resend_email_api_key
 ```
 
@@ -95,7 +89,6 @@ RESEND_API_KEY=your_resend_email_api_key
 - Next.js Documentation — comprehensive guides and API refs
 - Learn Next.js — interactive tutorials
 - Supabase Docs — auth, database, and RLS setup
-- MongoDB Docs — queries and indexing
 - Next.js Deployment — deploy to Vercel
 
 (Links can be added in your README to the official docs for each.)
@@ -114,8 +107,7 @@ RESEND_API_KEY=your_resend_email_api_key
 
 ```
 /app             # Next.js App Router pages
-/components      # Reusable React components
-/lib             # Supabase and MongoDB helpers
+/lib             # Supabase helpers
 /functions       # Serverless functions (cron jobs, notifications)
 styles           # CSS / Tailwind styling
 ```
