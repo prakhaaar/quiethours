@@ -203,15 +203,9 @@ export default function Dashboard() {
 
           {showForm && (
             <SessionForm
-              title={title}
-              startTime={startTime}
-              endTime={endTime}
               editingBlock={editingBlock}
-              setTitle={setTitle}
-              setStartTime={setStartTime}
-              setEndTime={setEndTime}
-              handleSave={handleSave}
               resetForm={resetForm}
+              refreshSessions={fetchSessions}
             />
           )}
 
