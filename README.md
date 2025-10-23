@@ -28,6 +28,8 @@ _Dashboard view / ._
 
 ![mail](/public/mail.png)
 
+![ui](/public/demof.gif)
+
 ### Prerequisites
 
 - Node.js v18+
