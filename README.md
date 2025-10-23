@@ -23,7 +23,7 @@ _Welcome screen and onboarding._
 ![Auth Page](/public/authpage.png)  
 _Sign-in / sign-up flow powered by Supabase._
 
-![Dashboard Email](/public/dashboard.png)  
+![Dashboard Email](/public/dashboard1.png)  
 _Dashboard view / ._
 
 ![mail](/public/mail.png)
