@@ -120,74 +120,74 @@ export default function SessionForm({
     }
   };
 
-return (
-  <div className="bg-[#FFFCF9] border border-[#FFE1DF] rounded-2xl p-6 shadow-sm max-w-4xl mx-auto my-8">
-    <h3 className="text-xl font-semibold mb-6 text-gray-800">
-      {editingBlock ? "Edit Session" : "Add New Session"}
-    </h3>
+  return (
+    <div className="bg-[#FFFCF9] border border-[#FFE1DF] rounded-2xl p-8 shadow-sm max-w-4xl mx-auto my-8">
+      <h3 className="text-xl font-semibold mb-6 text-gray-800">
+        {editingBlock ? "Edit Session" : "Add New Session"}
+      </h3>
 
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {/* Title */}
-      <div className="flex flex-col">
-        <label className="text-sm font-medium text-gray-700 mb-1">
-          Session Title
-        </label>
-        <input
-          type="text"
-          placeholder="Enter session name"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="border border-[#FFE1DF] rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-[#FFE1DF] focus:border-[#FFE1DF] outline-none transition"
-        />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Title */}
+        <div className="flex flex-col">
+          <label className="text-sm font-medium text-gray-700 mb-2">
+            Session Title
+          </label>
+          <input
+            type="text"
+            placeholder="Enter session name"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="border border-[#FFE1DF] rounded-lg px-4 py-3 text-gray-700 focus:ring-2 focus:ring-[#FFE1DF] focus:border-[#FFE1DF] outline-none transition"
+          />
+        </div>
+
+        {/* Start Time */}
+        <div className="flex flex-col">
+          <label className="text-sm font-medium text-gray-700 mb-2">
+            Start Time
+          </label>
+          <input
+            type="datetime-local"
+            value={startTime}
+            onChange={(e) => setStartTime(e.target.value)}
+            className="border border-[#FFE1DF] rounded-lg px-4 py-3 text-gray-700 focus:ring-2 focus:ring-[#FFE1DF] focus:border-[#FFE1DF] outline-none transition"
+          />
+        </div>
+
+        {/* End Time */}
+        <div className="flex flex-col">
+          <label className="text-sm font-medium text-gray-700 mb-2">
+            End Time
+          </label>
+          <input
+            type="datetime-local"
+            value={endTime}
+            onChange={(e) => setEndTime(e.target.value)}
+            className="border border-[#FFE1DF] rounded-lg px-4 py-3 text-gray-700 focus:ring-2 focus:ring-[#FFE1DF] focus:border-[#FFE1DF] outline-none transition"
+          />
+        </div>
       </div>
 
-      {/* Start Time */}
-      <div className="flex flex-col">
-        <label className="text-sm font-medium text-gray-700 mb-1">
-          Start Time
-        </label>
-        <input
-          type="datetime-local"
-          value={startTime}
-          onChange={(e) => setStartTime(e.target.value)}
-          className="border border-[#FFE1DF] rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-[#FFE1DF] focus:border-[#FFE1DF] outline-none transition"
-        />
-      </div>
+      <div className="mt-8 flex flex-wrap gap-4">
+        <button
+          onClick={handleSave}
+          disabled={loading}
+          className="bg-[#FFE1DF] text-gray-800 px-6 py-2.5 rounded-lg font-medium hover:bg-[#FFD2CB] transition disabled:opacity-60"
+        >
+          {loading
+            ? "Saving..."
+            : editingBlock
+            ? "Update Session"
+            : "Save Session"}
+        </button>
 
-      {/* End Time */}
-      <div className="flex flex-col">
-        <label className="text-sm font-medium text-gray-700 mb-1">
-          End Time
-        </label>
-        <input
-          type="datetime-local"
-          value={endTime}
-          onChange={(e) => setEndTime(e.target.value)}
-          className="border border-[#FFE1DF] rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-[#FFE1DF] focus:border-[#FFE1DF] outline-none transition"
-        />
+        <button
+          onClick={resetForm}
+          className="px-6 py-2.5 border border-[#FFE1DF] text-gray-700 rounded-lg hover:bg-[#FFE1DF] transition"
+        >
+          Cancel
+        </button>
       </div>
     </div>
-
-    <div className="mt-6 flex flex-wrap gap-4">
-      <button
-        onClick={handleSave}
-        disabled={loading}
-        className="bg-[#FFE1DF] text-gray-800 px-6 py-2.5 rounded-lg font-medium hover:bg-[#FFD2CB] transition disabled:opacity-60"
-      >
-        {loading
-          ? "Saving..."
-          : editingBlock
-          ? "Update Session"
-          : "Save Session"}
-      </button>
-
-      <button
-        onClick={resetForm}
-        className="px-6 py-2.5 border border-[#FFE1DF] text-gray-700 rounded-lg hover:bg-[#FFE1DF] transition"
-      >
-        Cancel
-      </button>
-    </div>
-  </div>
-);
-
+  );
+}
