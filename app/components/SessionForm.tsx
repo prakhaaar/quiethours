@@ -9,20 +9,12 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // ---------- Time Utilities ----------
-/**
- * Converts a local datetime (from <input type="datetime-local">)
- * into an ISO UTC string for Supabase (timestamptz).
- */
 const toUTC = (localDateTime: string) => {
   if (!localDateTime) return null;
   const date = new Date(localDateTime);
-  return date.toISOString(); // standardized UTC format
+  return date.toISOString();
 };
 
-/**
- * Converts a UTC timestamp from Supabase into a local datetime string
- * suitable for the datetime-local input field.
- */
 const toLocal = (utcDateString: string) => {
   if (!utcDateString) return "";
   const date = new Date(utcDateString);
@@ -34,7 +26,7 @@ const toLocal = (utcDateString: string) => {
 interface SessionFormProps {
   editingBlock: any;
   resetForm: () => void;
-  refreshSessions?: () => void; // made optional for safety
+  refreshSessions?: () => void;
 }
 
 export default function SessionForm({
@@ -47,7 +39,7 @@ export default function SessionForm({
   const [endTime, setEndTime] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Prefill when editing
+  // Prefill form if editing
   useEffect(() => {
     if (editingBlock) {
       setTitle(editingBlock.title || "");
@@ -63,19 +55,18 @@ export default function SessionForm({
   // ---------- Handle Save ----------
   const handleSave = async () => {
     if (!title || !startTime || !endTime) {
-      alert("Please fill all fields!");
+      alert("Please fill all fields before saving.");
       return;
     }
 
     if (new Date(endTime) <= new Date(startTime)) {
-      alert("End time must be after start time!");
+      alert("End time must be after start time.");
       return;
     }
 
     setLoading(true);
 
     try {
-      // Get current user (needed for RLS insert)
       const {
         data: { user },
         error: userError,
@@ -92,7 +83,7 @@ export default function SessionForm({
         end_time: toUTC(endTime),
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         notified: false,
-        user_id: user.id, // ✅ required for RLS policy
+        user_id: user.id,
       };
 
       let error = null;
@@ -102,7 +93,7 @@ export default function SessionForm({
           .from("blocks")
           .update(payload)
           .eq("id", editingBlock.id)
-          .eq("user_id", user.id); // ensure only owner can update
+          .eq("user_id", user.id);
         error = updateError;
       } else {
         const { error: insertError } = await supabase
@@ -113,15 +104,34 @@ export default function SessionForm({
 
       if (error) throw error;
 
-      // ✅ Try refreshing list if function exists
       if (typeof refreshSessions === "function") {
         await refreshSessions();
       }
 
+      alert(
+        editingBlock
+          ? "Session updated successfully!"
+          : "Session saved successfully!"
+      );
       resetForm();
-    } catch (error) {
+    } catch (error: any) {
       console.error("❌ Error saving session:", error);
-      alert("Failed to save session. Check console for details.");
+
+      const msg = error?.message?.toLowerCase?.() || "";
+
+      if (msg.includes("violates") && msg.includes("policy")) {
+        alert(
+          "You don't have permission to modify this session (RLS restriction)."
+        );
+      } else if (msg.includes("overlap") || msg.includes("conflict")) {
+        alert(
+          "This session overlaps with another one. Please choose a different time."
+        );
+      } else if (msg.includes("foreign key") || msg.includes("user_id")) {
+        alert("User validation failed. Please log in again.");
+      } else {
+        alert("Failed to save session. " + (error.message || "Unknown error."));
+      }
     } finally {
       setLoading(false);
     }
