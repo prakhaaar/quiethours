@@ -39,7 +39,6 @@ export default function SessionForm({
   const [endTime, setEndTime] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Prefill form if editing
   useEffect(() => {
     if (editingBlock) {
       setTitle(editingBlock.title || "");
@@ -52,7 +51,6 @@ export default function SessionForm({
     }
   }, [editingBlock]);
 
-  // ---------- Handle Save ----------
   const handleSave = async () => {
     if (!title || !startTime || !endTime) {
       alert("Please fill all fields before saving.");
@@ -116,74 +114,80 @@ export default function SessionForm({
       resetForm();
     } catch (error: any) {
       console.error("❌ Error saving session:", error);
-
-      const msg = error?.message?.toLowerCase?.() || "";
-
-      if (msg.includes("violates") && msg.includes("policy")) {
-        alert(
-          "You don't have permission to modify this session (RLS restriction)."
-        );
-      } else if (msg.includes("overlap") || msg.includes("conflict")) {
-        alert(
-          "This session overlaps with another one. Please choose a different time."
-        );
-      } else if (msg.includes("foreign key") || msg.includes("user_id")) {
-        alert("User validation failed. Please log in again.");
-      } else {
-        alert("Failed to save session. " + (error.message || "Unknown error."));
-      }
+      alert("Failed to save session. " + (error.message || "Unknown error."));
     } finally {
       setLoading(false);
     }
   };
 
-  // ---------- Render ----------
-  return (
-    <div className="bg-orange-50/40 border border-orange-100 rounded-xl p-6 mb-8 shadow-inner">
-      <h3 className="text-lg font-semibold mb-3 text-gray-700">
-        {editingBlock ? "Edit Session" : "New Session"}
-      </h3>
+return (
+  <div className="bg-[#FFFCF9] border border-[#FFE1DF] rounded-2xl p-6 shadow-sm max-w-4xl mx-auto my-8">
+    <h3 className="text-xl font-semibold mb-6 text-gray-800">
+      {editingBlock ? "Edit Session" : "Add New Session"}
+    </h3>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Title */}
+      <div className="flex flex-col">
+        <label className="text-sm font-medium text-gray-700 mb-1">
+          Session Title
+        </label>
         <input
           type="text"
-          placeholder="Session Title"
+          placeholder="Enter session name"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-orange-300 outline-none"
+          className="border border-[#FFE1DF] rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-[#FFE1DF] focus:border-[#FFE1DF] outline-none transition"
         />
+      </div>
 
+      {/* Start Time */}
+      <div className="flex flex-col">
+        <label className="text-sm font-medium text-gray-700 mb-1">
+          Start Time
+        </label>
         <input
           type="datetime-local"
           value={startTime}
           onChange={(e) => setStartTime(e.target.value)}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-orange-300 outline-none"
+          className="border border-[#FFE1DF] rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-[#FFE1DF] focus:border-[#FFE1DF] outline-none transition"
         />
+      </div>
 
+      {/* End Time */}
+      <div className="flex flex-col">
+        <label className="text-sm font-medium text-gray-700 mb-1">
+          End Time
+        </label>
         <input
           type="datetime-local"
           value={endTime}
           onChange={(e) => setEndTime(e.target.value)}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-orange-300 outline-none"
+          className="border border-[#FFE1DF] rounded-lg px-3 py-2 text-gray-700 focus:ring-2 focus:ring-[#FFE1DF] focus:border-[#FFE1DF] outline-none transition"
         />
       </div>
-
-      <div className="mt-4 flex gap-3">
-        <button
-          onClick={handleSave}
-          disabled={loading}
-          className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-5 py-2 rounded-lg font-medium hover:opacity-90 transition disabled:opacity-60"
-        >
-          {loading ? "Saving..." : editingBlock ? "Update" : "Save"}
-        </button>
-
-        <button
-          onClick={resetForm}
-          className="px-5 py-2 border border-gray-300 text-gray-600 rounded-lg hover:bg-gray-100 transition"
-        >
-          Cancel
-        </button>
-      </div>
     </div>
-  );
-}
+
+    <div className="mt-6 flex flex-wrap gap-4">
+      <button
+        onClick={handleSave}
+        disabled={loading}
+        className="bg-[#FFE1DF] text-gray-800 px-6 py-2.5 rounded-lg font-medium hover:bg-[#FFD2CB] transition disabled:opacity-60"
+      >
+        {loading
+          ? "Saving..."
+          : editingBlock
+          ? "Update Session"
+          : "Save Session"}
+      </button>
+
+      <button
+        onClick={resetForm}
+        className="px-6 py-2.5 border border-[#FFE1DF] text-gray-700 rounded-lg hover:bg-[#FFE1DF] transition"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+);
+
