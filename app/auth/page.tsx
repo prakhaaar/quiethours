@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { supabaseClient } from "../lib/supabaseClient";
 import toast from "react-hot-toast";
+import { Sparkles } from "lucide-react";
 
 export default function Authpage() {
   const router = useRouter();
@@ -58,30 +59,35 @@ export default function Authpage() {
 
   return (
     <main className="flex flex-col md:flex-row min-h-screen bg-orange-50">
-      {/* 🟧 Orange Panel — Always Visible */}
-      <div className="w-full md:w-1/2 bg-orange-500 text-white flex flex-col items-center justify-center p-10 text-center">
+      {/* Orange Panel */}
+      <div className="w-full md:w-1/2 bg-orange-500 text-white flex flex-col items-center justify-center px-6 py-10 md:p-12 text-center">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          className="max-w-md mx-auto"
         >
-          <h1 className="text-3xl font-bold mb-3">Welcome to Our App</h1>
-          <p className="text-white/90 text-lg">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 flex flex-wrap items-center justify-center gap-2 leading-tight">
+            <span>Welcome to</span>
+            <b className="text-white">quiethours</b>
+            <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
+          </h1>
+          <p className="text-white/90 text-sm sm:text-base md:text-lg leading-relaxed px-2">
             {isSignup
               ? "Create your account and join us today!"
-              : "Sign in to continue your journey!"}
+              : "Sign in to schedule your blocks and boost your focus!"}
           </p>
         </motion.div>
       </div>
 
-      {/* ⚪ White Auth Form */}
-      <div className="w-full md:w-1/2 flex flex-col justify-center p-8 md:p-12 bg-white">
+      {/* Auth Form */}
+      <div className="w-full md:w-1/2 flex flex-col justify-center p-6 sm:p-10 md:p-12 bg-white">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-2xl font-bold mb-5 text-gray-800 text-center md:text-left">
+          <h2 className="text-2xl md:text-3xl font-bold mb-5 text-gray-800 text-center md:text-left">
             {isSignup ? "Sign Up" : "Sign In"}
           </h2>
 
@@ -91,14 +97,14 @@ export default function Authpage() {
             </p>
           )}
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="space-y-4">
             {isSignup && (
               <input
                 type="text"
                 placeholder="Full Name"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                className="w-full px-4 py-3 mb-4 rounded-lg border border-gray-300 focus:ring-1 focus:ring-orange-400 outline-none text-gray-700 placeholder-gray-400"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-400 outline-none text-gray-700 placeholder-gray-400"
                 required
               />
             )}
@@ -108,7 +114,7 @@ export default function Authpage() {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 mb-4 rounded-lg border border-gray-300 focus:ring-1 focus:ring-orange-400 outline-none text-gray-700 placeholder-gray-400"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-400 outline-none text-gray-700 placeholder-gray-400"
               required
             />
 
@@ -117,14 +123,14 @@ export default function Authpage() {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 mb-6 rounded-lg border border-gray-300 focus:ring-1 focus:ring-orange-400 outline-none text-gray-700 placeholder-gray-400"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-400 outline-none text-gray-700 placeholder-gray-400"
               required
             />
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 mb-4 rounded-lg bg-orange-500 text-white font-semibold hover:bg-orange-600 transition"
+              className="w-full py-3 rounded-lg bg-orange-500 text-white font-semibold hover:bg-orange-600 transition"
             >
               {loading
                 ? isSignup
@@ -137,7 +143,7 @@ export default function Authpage() {
           </form>
 
           {!isSignup && (
-            <div className="flex items-center justify-between text-sm text-gray-600">
+            <div className="flex items-center justify-between text-sm text-gray-600 mt-3">
               <label className="flex items-center space-x-2">
                 <input type="checkbox" className="accent-orange-500" />
                 <span>Remember Me</span>
@@ -148,7 +154,6 @@ export default function Authpage() {
             </div>
           )}
 
-          {/* 🔁 Toggle Link */}
           <div className="mt-6 text-center text-sm text-gray-600">
             {isSignup ? (
               <p>
