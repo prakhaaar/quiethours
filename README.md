@@ -91,9 +91,8 @@ RESEND_API_KEY=your_resend_email_api_key
 - Next.js Documentation — comprehensive guides and API refs
 - Learn Next.js — interactive tutorials
 - Supabase Docs — auth, database, and RLS setup
+- Resend Api Docs;
 - Next.js Deployment — deploy to Vercel
-
-(Links can be added in your README to the official docs for each.)
 
 ---
 
